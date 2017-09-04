@@ -1,0 +1,25 @@
+{
+  "name": "node-architecture-boilerplate",
+  "version": "0.1.0",
+  "description": "A node boilerplate project showcasing an architecture approach",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.15.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.6.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "sinon": "^3.2.1",
+    "supertest": "^3.0.0"
+  }
+}
