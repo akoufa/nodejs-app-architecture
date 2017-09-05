@@ -12,7 +12,8 @@
     "flow": "flow"
   },
   "pre-commit": [
-    "lint"
+    "lint",
+    "flow"
   ],
   "author": "Alex Koufatzis",
   "license": "ISC",
