@@ -1,12 +1,23 @@
 module.exports = {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "flowtype"
+  ],
   "env": {
       "mocha": true,
       "es6": true,
       "node": true
   },
-  rules={
+  rules: {
     "prefer-arrow-callback": "off",
     "func-names": "off"
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
   }
 };

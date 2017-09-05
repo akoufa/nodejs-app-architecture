@@ -12,8 +12,8 @@ const app = require('../src/http/app')(services);
 
 const userData = require('./data/user').users;
 
-describe('user route test', function() {
-  describe('GET /users test', function() {
+describe('user route test', function () {
+  describe('GET /users test', function () {
     beforeEach(() => {
       sinon.stub(userService, 'getAllUsers');
     });
@@ -22,7 +22,7 @@ describe('user route test', function() {
       userService.getAllUsers.restore();
     });
 
-    it('should return 200 an array of users', async function() {
+    it('should return 200 an array of users', async function () {
       userService.getAllUsers.resolves(userData);
 
       const { body: users } = await request(app)
@@ -32,7 +32,7 @@ describe('user route test', function() {
       expect(users).to.eql(userData);
     });
 
-    it('should return 500 when the service rejects with an error', function() {
+    it('should return 500 when the service rejects with an error', function () {
       const dbError = new Error('Database error');
       userService.getAllUsers.rejects(dbError);
 
