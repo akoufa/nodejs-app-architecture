@@ -4,10 +4,15 @@
   "description": "A node boilerplate project showcasing an architecture approach",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "nodemon --watch src src/server.js",
+    "start": "node ./src/server.js",
+    "test": "./node_modules/.bin/mocha test --recursive",
+    "lint": "./node_modules/.bin/eslint src/**"
   },
-  "author": "",
+  "pre-commit": [
+    "lint"
+  ],
+  "author": "Alex Koufatzis",
   "license": "ISC",
   "dependencies": {
     "express": "4.15.4"
@@ -19,6 +24,9 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "mocha": "^3.5.0",
+    "nodemon": "^1.12.0",
+    "pre-commit": "^1.2.2",
     "sinon": "^3.2.1",
     "supertest": "^3.0.0"
   }
