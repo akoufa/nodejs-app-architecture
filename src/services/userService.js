@@ -4,7 +4,7 @@ const User = require('../models/User');
 function create(db) { // eslint-disable-line
   async function getAllUsers() {
     // TODO: Add the db call here and map the results to User model
-    return [new User('Alex', 20), new User('Aris', 19), new User('Pantelis', 40)];
+    return [new User('Alex', '20'), new User('Aris', 19), new User('Pantelis', 40)];
   }
 
   return {

@@ -1,12 +1,9 @@
 const request = require('supertest');
 const expect = require('chai').expect;
 const sinon = require('sinon');
+const services = require('../src/services');
 
-const userService = {
-  getAllUsers() {},
-};
-
-const services = { userService };
+const userService = services.userService;
 
 const app = require('../src/http/app')(services);
 
