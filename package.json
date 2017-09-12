@@ -18,6 +18,7 @@
   "author": "Alex Koufatzis",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.0",
     "express": "4.15.4"
   },
   "devDependencies": {
