@@ -1,13 +1,15 @@
 const request = require('supertest');
 const expect = require('chai').expect;
 const sinon = require('sinon');
-const services = require('../src/services');
+
+const db = sinon.stub();
+const services = require('../../src/services')(db);
 
 const userService = services.userService;
 
-const app = require('../src/http/app')(services);
+const app = require('../../src/http/app')(services);
 
-const userData = require('./data/user').users;
+const userData = require('../data/user').users;
 
 describe('user route test', function () {
   describe('GET /users test', function () {
