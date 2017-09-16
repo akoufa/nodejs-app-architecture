@@ -9,6 +9,14 @@ function create({ userService }) {
     res.json(users);
   }));
 
+  // TODO: Install middleware to validate the input
+  router.post('/', asyncWrapper(async (req, res) => {
+    const user = req.body;
+    await userService.createUser(user);
+    // TODO: Fix the response
+    res.json({});
+  }));
+
   return router;
 }
 
