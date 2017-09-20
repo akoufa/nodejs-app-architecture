@@ -1,7 +1,7 @@
 FROM node:alpine
 
 # Run the image as a non-root user
-Run adduser -S nodejs
+RUN adduser -S nodejs
 USER nodejs
 
 # Create app directory
@@ -19,4 +19,4 @@ COPY . /home/nodejs/src
 RUN npm run build
 
 # Start the app
-CMD ["node", "--optimize_for_size", "--max_old_space_size=460", "--gc_interval=100", "./dist/server.js"]
+CMD ["npm", "start"]
