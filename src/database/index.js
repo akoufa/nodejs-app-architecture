@@ -11,5 +11,6 @@ sequelize.sync();
 module.exports = {
   User,
   sync: sequelize.sync.bind(this),
+  close: () => sequelize.connectionManager.close(),
 };
 
