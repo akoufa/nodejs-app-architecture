@@ -1,43 +1,33 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
-const Sequelize = require('sequelize');
-const UserModel = require('../../src/models/User');
+const User = require('../../src/models/User');
+const userRepositoryFactory = require('../../src/repositories/userRepository');
+const userServiceFactory = require('../../src/services/userService');
 
-// Just instantiate sequelize without a connection string
-const sequelize = new Sequelize({ dialect: 'postgres' });
+const db = sinon.stub();
+const userRepository = userRepositoryFactory.create(db);
+const userService = userServiceFactory.create(userRepository);
 
-const User = require('../../src/database/models/User')(sequelize);
-
-const db = { User };
-
-const { userService } = require('../../src/services')(db);
-
-function createDbUsers() {
-  const pantelis = User.build({ firstName: 'Pantelis', lastName: 'Pappous', age: 40 });
-  const aris = User.build({ firstName: 'Aris', lastName: 'Autias', age: 28 });
-  return [pantelis, aris];
-}
-
-function createAppModelUsers() {
-  const pantelis = new UserModel('Pantelis Pappous', 40);
-  const aris = new UserModel('Aris Autias', 28);
+function createUsers() {
+  const pantelis = new User('Pantelis Pappous', 40);
+  const aris = new User('Aris Autias', 28);
   return [pantelis, aris];
 }
 
 describe('user service test', function () {
   beforeEach(() => {
-    sinon.stub(User, 'findAll');
+    sinon.stub(userRepository, 'getAll');
   });
 
   afterEach(() => {
-    User.findAll.restore();
+    userRepository.getAll.restore();
   });
 
-  it('should call the db and map the result to user models', async function () {
-    User.findAll.resolves(createDbUsers());
+  it('should call the repository to fetch the users', async function () {
+    userRepository.getAll.resolves(createUsers());
     const users = await userService.getAllUsers();
     expect(users).to.have.lengthOf(2);
-    expect(users).to.eql(createAppModelUsers());
+    expect(users).to.eql(createUsers());
   });
 });
 

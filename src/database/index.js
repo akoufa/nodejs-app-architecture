@@ -3,7 +3,7 @@ const { connectionString } = require('../configuration');
 
 const sequelize = new Sequelize(connectionString);
 
-const User = require('./models/User')(sequelize);
+const User = require('./entities/User')(sequelize);
 
 sequelize.sync();
 

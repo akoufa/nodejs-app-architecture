@@ -1,8 +1,8 @@
 // Register all the services here
 const userServiceFactory = require('./userService');
 
-module.exports = (db) => {
-  const userService = userServiceFactory.create(db);
+module.exports = (repositories) => {
+  const userService = userServiceFactory.create(repositories.userRepository);
   return ({
     userService,
   });

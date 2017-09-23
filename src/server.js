@@ -2,7 +2,8 @@ require('dotenv').config();
 const logger = require('./libs/logger');
 const { port } = require('./configuration');
 const db = require('./database');
-const services = require('./services')(db);
+const repositories = require('./repositories')(db);
+const services = require('./services')(repositories);
 const app = require('./http/app')(services);
 const signals = require('./signals');
 

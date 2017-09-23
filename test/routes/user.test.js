@@ -2,8 +2,8 @@ const request = require('supertest');
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-const db = sinon.stub();
-const services = require('../../src/services')(db);
+const repositories = sinon.stub();
+const services = require('../../src/services')(repositories);
 
 const userService = services.userService;
 
