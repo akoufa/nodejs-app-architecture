@@ -31,7 +31,15 @@ Define an `.env` file at the root directory of the project containing all the en
 
 #### Use Docker:
 
-You can use Docker to start the app. The [Dockerfile](./Dockerfile) is already provided for you.
+You can use Docker to start the app locally. The [Dockerfile](./Dockerfile) and the [docker-compose.yml](./docker-compose.yml) are already provided for you.
+For this option you must specify following vars in the `.env` file:
+
+`DATABASE_CONNECTION_STRING`</br>
+`POSTGRES_PASSWORD`</br>
+
+then run the following command:
+
+`docker-compose up`
 
 #### Use the npm scripts:
 
