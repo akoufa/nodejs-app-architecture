@@ -9,5 +9,4 @@ const init = closeFunc => async () => {
   }
 };
 
-
 module.exports = { init };

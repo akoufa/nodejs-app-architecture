@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
 const { connectionString } = require('../configuration');
 
-const sequelize = new Sequelize(connectionString);
+const sequelize = new Sequelize(connectionString, {
+  dialect: 'postgres',
+});
 
 const User = require('./entities/User')(sequelize);
 
@@ -13,4 +15,3 @@ module.exports = {
   sync: sequelize.sync.bind(this),
   close: () => sequelize.connectionManager.close(),
 };
-

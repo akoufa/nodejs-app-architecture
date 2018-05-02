@@ -1,6 +1,6 @@
 /**
- * 
- * @param {function} fn 
+ *
+ * @param {function} fn
  */
 function asyncWrapper(fn) {
   return async (req, res, next) => {

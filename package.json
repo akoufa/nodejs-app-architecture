@@ -1,7 +1,8 @@
 {
   "name": "node-architecture-boilerplate",
   "version": "0.1.0",
-  "description": "A node boilerplate project showcasing an architecture approach",
+  "description":
+    "A node boilerplate project showcasing an architecture approach",
   "main": "server.js",
   "scripts": {
     "debug": "nodemon --watch src --exec babel-node src/server.js",
@@ -11,12 +12,17 @@
     "lint": "eslint src/**",
     "flow": "flow"
   },
-  "pre-commit": [
-    "lint",
-    "flow"
-  ],
+  "lint-staged": {
+    "src/**/*.js": ["yarn lint", "prettier --write", "git add"]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn flow && lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
   "author": "Alex Koufatzis",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.18.0",
     "dotenv": "^4.0.0",
@@ -33,14 +39,18 @@
     "chai": "^4.1.2",
     "eslint": "^4.6.0",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-flowtype": "^2.35.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "flow-bin": "^0.54.0",
+    "husky": "^1.0.0-rc.2",
+    "lint-staged": "^7.0.5",
     "mocha": "^3.5.0",
     "nodemon": "^1.12.0",
     "pre-commit": "^1.2.2",
+    "prettier": "^1.12.1",
     "sinon": "^3.2.1",
     "supertest": "^3.0.0"
   }

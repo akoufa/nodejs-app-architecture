@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const UserModel = require('../../models/User');
 
-module.exports = (sequelize) => {
+module.exports = sequelize => {
   const User = sequelize.define('user', {
     firstName: {
       type: Sequelize.STRING,
@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     },
   });
 
-  // Map to application model so we don't have tight coupling 
+  // Map to application model so we don't have tight coupling
   // throughout the app with the db implemenation
   User.prototype.toUserModel = function toUserModel() {
     const name = `${this.firstName} ${this.lastName}`;
@@ -26,4 +26,3 @@ module.exports = (sequelize) => {
 
   return User;
 };
-

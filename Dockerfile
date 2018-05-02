@@ -1,22 +1,31 @@
-FROM node:alpine
+FROM node:carbon-alpine as builder
 
-# Run the image as a non-root user
-RUN adduser -S nodejs
-USER nodejs
+RUN mkdir -p /build
 
-# Create app directory
-RUN mkdir -p /home/nodejs/src
-WORKDIR /home/nodejs/src
-
-# Install app dependencies
-COPY package.json /home/nodejs/src
-RUN npm install
+COPY ./package.json ./yarn.* /build/
+WORKDIR /build
+RUN yarn install --frozen-lockfile
 
 # Bundle app source
-COPY . /home/nodejs/src
+COPY . /build
 
 # Build app for production
-RUN npm run build
+RUN yarn build
 
-# Start the app
-CMD ["npm", "start"]
+FROM node:carbon-alpine
+# user with username node is provided from the official node image
+ENV user node
+# Run the image as a non-root user
+USER $user
+
+# Create app directory
+RUN mkdir -p /home/$user/src
+WORKDIR /home/$user/src
+
+COPY --from=builder /build ./
+
+EXPOSE 5000
+
+ENV NODE_ENV production
+
+CMD ["node", "./dist/server.js"]

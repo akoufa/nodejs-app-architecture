@@ -6,7 +6,7 @@ const errorRoute = require('./routes/error');
 const app = express();
 app.use(bodyParser.json());
 
-module.exports = (services) => {
+module.exports = services => {
   const user = userRoute.create(services);
   app.use('/users', user);
   app.use(errorRoute);

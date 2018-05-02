@@ -1,7 +1,7 @@
 // @flow
 
 /**
- * This is the app Model it is decoupled from 
+ * This is the app Model it is decoupled from
  * the Entities used for the databse
  */
 class User {

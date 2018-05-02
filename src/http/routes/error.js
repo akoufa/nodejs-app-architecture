@@ -3,7 +3,9 @@
 // with the callers of the app as this could be a security risk
 
 // TODO: Log the errors
-function errorHandler(err, req, res, next) { //eslint-disable-line
+
+// eslint-disable-next-line no-unused-vars
+function errorHandler(err, req, res, next) {
   res.status(500);
   res.json({ error: err.message, status: 500 });
 }
