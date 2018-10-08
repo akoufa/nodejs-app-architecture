@@ -4,10 +4,8 @@
 
 // TODO: Log the errors
 
-// eslint-disable-next-line no-unused-vars
-function errorHandler(err, req, res, next) {
+// @ts-ignore
+export function errorHandler(err: Error, req: any, res: any, next: any) {
   res.status(500);
   res.json({ error: err.message, status: 500 });
 }
-
-module.exports = errorHandler;
