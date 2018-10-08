@@ -10,7 +10,7 @@
     "tsc": "tsc",
     "watch-node": "nodemon ./dist/server.js",
     "watch-tsc": "tsc -w",
-    "prettier": "prettier --list-different '**/*.ts'",
+    "prettier": "prettier --list-different './src/**/*.ts'",
     "clean": "rimraf dist",
     "test": "jest",
     "lint": "tslint -c tslint.json -p tsconfig.json"
