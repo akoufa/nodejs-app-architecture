@@ -54,12 +54,12 @@ _or_
 ## Packages and Tools
 
 - [Node v8+](http://nodejs.org/)
+- [TypeScript](https://github.com/Microsoft/TypeScript)
 - [Express](https://npmjs.com/package/express)
 - [Nodemon](https://github.com/remy/nodemon)
-- [Mocha](https://www.npmjs.com/package/mocha)
-- [Chai](https://www.npmjs.com/package/chai)
+- [Prettier](https://github.com/prettier/prettier)
+- [Jest](https://github.com/facebook/jest)
 - [TSlint](https://github.com/palantir/tslint)
-- [Sinon](https://www.npmjs.com/package/sinon)
 - [Supertest](https://github.com/visionmedia/supertest)
 
 ## License
