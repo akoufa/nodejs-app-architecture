@@ -12,6 +12,7 @@
     "member-access": [true, "no-public"],
     "variable-name": false,
     "ordered-imports": false,
+    "import-name": false,
     "object-literal-sort-keys": false
   },
   "linterOptions": {
