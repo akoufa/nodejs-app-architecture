@@ -4,7 +4,7 @@ RUN mkdir -p /build
 
 COPY ./package.json ./yarn.* /build/
 WORKDIR /build
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --prod
 
 # Bundle app source
 COPY . /build

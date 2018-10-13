@@ -1,17 +1,16 @@
 version: '3.3'
 services:
- web:
-  build: .
-  ports:
-   - "5000:5000"
-  env_file: .env
-  depends_on:
-   - db
-  volumes:
-   - .:/home/nodejs/src
- db:
-  image: postgres:latest
-  ports:
-   - "5432:5432"
-  env_file: .env
-   
+  web:
+    build: .
+    ports:
+      - '5000:5000'
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - .:/home/nodejs/src
+  db:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    env_file: .env

@@ -29,6 +29,7 @@ Dockerfile
 
 # Linter config
 .eslintrc
+tslint.json
 
 # Editor config
 vscode/

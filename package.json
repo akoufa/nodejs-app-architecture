@@ -1,23 +1,30 @@
 {
   "name": "node-architecture-boilerplate",
-  "version": "0.1.0",
-  "description":
-    "A node boilerplate project showcasing an architecture approach",
-  "main": "server.js",
+  "version": "0.2.0",
+  "description": "A node boilerplate project showcasing an architecture approach",
+  "main": "./src/server.ts",
   "scripts": {
-    "debug": "nodemon --watch src --exec babel-node src/server.js",
-    "start": "node ./dist/server.js",
-    "build": "babel src/ -d dist/",
-    "test": "mocha test --recursive --compilers js:babel-register",
-    "lint": "eslint src/**",
-    "flow": "flow"
+    "debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"npm run watch-tsc\" \"npm run watch-node\"",
+    "start": "NODE_ENV=production npx ts-node src/server.ts",
+    "build": "tsc",
+    "tsc": "tsc",
+    "watch-node": "nodemon ./dist/server.js",
+    "watch-tsc": "tsc -w",
+    "prettier": "prettier --list-different './src/**/*.ts'",
+    "clean": "rimraf dist",
+    "test": "jest",
+    "lint": "tslint -c tslint.json -p tsconfig.json"
   },
   "lint-staged": {
-    "src/**/*.js": ["yarn lint", "prettier --write", "git add"]
+    "src/**/*.js": [
+      "yarn lint",
+      "prettier --write",
+      "git add"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn flow && lint-staged",
+      "pre-commit": "yarn build && lint-staged",
       "pre-push": "yarn test"
     }
   },
@@ -27,31 +34,28 @@
     "body-parser": "^1.18.0",
     "dotenv": "^4.0.0",
     "express": "4.15.4",
-    "pg": "^7.3.0",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.8.4"
+    "mongoose": "^5.3.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^7.2.3",
-    "babel-preset-flow": "^6.23.0",
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.2",
-    "eslint": "^4.6.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-flowtype": "^2.35.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.3.0",
-    "flow-bin": "^0.54.0",
-    "husky": "^1.0.0-rc.2",
-    "lint-staged": "^7.0.5",
-    "mocha": "^3.5.0",
-    "nodemon": "^1.12.0",
-    "pre-commit": "^1.2.2",
-    "prettier": "^1.12.1",
-    "sinon": "^3.2.1",
-    "supertest": "^3.0.0"
+    "@types/body-parser": "^1.17.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.4",
+    "@types/mongoose": "^5.2.18",
+    "@types/node": "^10.11.4",
+    "@types/supertest": "^2.0.6",
+    "concurrently": "^4.0.1",
+    "husky": "1.1.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.3.0",
+    "nodemon": "^1.18.0",
+    "prettier": "^1.14.0",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.3.0",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.1"
   }
 }

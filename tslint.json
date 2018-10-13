@@ -1,0 +1,21 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "interface-name": false,
+    "no-string-literal": false,
+    "no-console": { "severity": "warning" },
+    "member-access": [true, "no-public"],
+    "variable-name": false,
+    "ordered-imports": false,
+    "import-name": false,
+    "object-literal-sort-keys": false
+  },
+  "linterOptions": {
+    "exclude": ["*.js"]
+  }
+}
