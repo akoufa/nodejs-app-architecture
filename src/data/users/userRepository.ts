@@ -1,5 +1,5 @@
 import { IUserEntity, UserDao } from '../database/entities/user';
-import { IUser } from '../models/user';
+import { IUser } from '../../domain/users/user';
 
 // DATA LAYER
 // UserRepository:

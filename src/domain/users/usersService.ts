@@ -1,5 +1,5 @@
-import { UserRepository } from '../repositories/userRepository';
-import { IUser } from '../models/user';
+import { IUser } from './user';
+import { IUserRepository } from './userRepository';
 
 // DOMAIN LAYER
 // Has the userRepository as a dependency. The UserService does not know
@@ -7,8 +7,8 @@ import { IUser } from '../models/user';
 // by the implementation of the repositories. It just calls the needed repositories
 // gets the results and usually applies some business logic on them.
 
-export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+export class UsersService {
+  constructor(private readonly userRepository: IUserRepository) {}
 
   async getAllUsers() {
     const users = await this.userRepository.getAll();

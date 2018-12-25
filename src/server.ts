@@ -1,18 +1,15 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import { config } from './configuration';
-import { Database } from './database';
 import { appFactory } from './http/app';
 import { logger } from './libs/logger';
-import { UserRepository } from './repositories/userRepository';
-import { UserService } from './services/userService';
+import { UserRepository } from './data/users/userRepository';
+import { UsersService } from './domain/users/usersService';
 import { init } from './signals';
+import { Database } from './data/database';
 
 const database = new Database(config.connectionString as string);
 database.connect();
 const userRepository = new UserRepository();
-const userService = new UserService(userRepository);
+const userService = new UsersService(userRepository);
 
 const app = appFactory(userService);
 

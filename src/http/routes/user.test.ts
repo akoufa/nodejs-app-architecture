@@ -1,12 +1,12 @@
 import request from 'supertest';
 import { appFactory } from '../../http/app';
-import { UserService } from '../../services/userService';
-import { UserRepository } from '../../repositories/userRepository';
+import { UsersService } from '../../domain/users/usersService';
+import { UserRepository } from '../../data/users/userRepository';
 
 const mockGetAll = jest.fn();
 const mockAdd = jest.fn();
 
-jest.mock('../../repositories/userRepository.ts', () => ({
+jest.mock('../../data/users/userRepository.ts', () => ({
   UserRepository: jest.fn().mockImplementation(() => {
     return {
       getAll: mockGetAll,
@@ -22,7 +22,7 @@ const userData = [
 ];
 
 const userRepository = new UserRepository();
-const userService = new UserService(userRepository);
+const userService = new UsersService(userRepository);
 
 const app = appFactory(userService);
 

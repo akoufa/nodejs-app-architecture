@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import { asyncWrapper } from '../utils/asyncWrapper';
-import { UserService } from '../../services/userService';
+import { UsersService } from '../../domain/users/usersService';
 
 const router = express.Router();
 
-export function userRoute(userService: UserService) {
+export function userRoute(userService: UsersService) {
   router.get(
     '/',
     asyncWrapper(async (_: Request, res: Response) => {

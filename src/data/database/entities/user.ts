@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { IUser } from '../../models/user';
+import { IUser } from '../../../domain/users/user';
 
 export interface IDocumentUser extends mongoose.Document {
   firstName: string;
