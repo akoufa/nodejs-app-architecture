@@ -17,9 +17,10 @@ const server = app.listen(config.port, () => {
   logger.info(`Listening on *:${config.port}`);
 });
 
-const shutdown = init(async () => {
-  await database.disconnect();
-  await server.close();
+const shutdown = init(() => {
+  server.close(async () => {
+    await database.disconnect();
+  });
 });
 
 process.on('SIGINT', shutdown);
