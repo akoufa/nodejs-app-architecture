@@ -2,15 +2,15 @@ FROM node:carbon-alpine as builder
 
 RUN mkdir -p /build
 
-COPY ./package.json ./yarn.* /build/
+COPY ./package.json ./package-lock.json /build/
 WORKDIR /build
-RUN yarn install --frozen-lockfile --prod
+RUN npi ci --production
 
 # Bundle app source
 COPY . /build
 
 # Build app for production
-RUN yarn build
+RUN npm run build
 
 FROM node:carbon-alpine
 # user with username node is provided from the official node image
