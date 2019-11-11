@@ -5,7 +5,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"npm run watch-tsc\" \"npm run watch-node\"",
-    "start": "NODE_ENV=production npx ts-node src/server.ts",
+    "start": "NODE_ENV=production node dist/server.js",
     "build": "tsc",
     "tsc": "tsc",
     "watch-node": "nodemon ./dist/server.js",

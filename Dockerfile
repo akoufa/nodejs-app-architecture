@@ -4,7 +4,7 @@ RUN mkdir -p /build
 
 COPY ./package.json ./package-lock.json /build/
 WORKDIR /build
-RUN npi ci --production
+RUN npm ci
 
 # Bundle app source
 COPY . /build
@@ -24,7 +24,7 @@ WORKDIR /home/$user/src
 
 COPY --from=builder /build ./
 
-EXPOSE 5000
+EXPOSE 3000
 
 ENV NODE_ENV production
 
