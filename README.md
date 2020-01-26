@@ -27,45 +27,46 @@ The entry point for the applications is the [server.ts](./src/server.ts) file. I
 
 # Quick start
 
-### Prerequisites:
-
-Define an `.env` file at the root directory of the project containing all the environment variables needed. You can find the keys needed for the env vars key-value pairs in the [configuration](./src/configuration/index.ts) file.
-
 #### Use Docker:
 
-You can use Docker to start the app locally. The [Dockerfile](./Dockerfile) and the [docker-compose.yml](./docker-compose.yml) are already provided for you.
-For this option you must specify following vars in the `.env` file:
+You can use Docker to start the app locally. The [Dockerfile](./Dockerfile) and the [docker-compose.yaml](./docker-compose.yaml) are already provided for you.
 
-`DATABASE_CONNECTION_STRING`</br>
 
-then run the following command:
+Run the following command:
 
-`docker-compose up`
+- `docker-compose up`
 
 #### Use the npm scripts:
 
-`npm run debug` for debugging using nodemon to auto restart the server on changes.
 
-_or_
+Setup development environment with docker:
 
-`npm run build` to build the project (removes the flow annotations) and then,</br>
-`npm start` to start the server.
+- `npm run start:dev.env` to start the development environment (mongo database).
+
+Run the service
+
+- `npm run dev` for starting the service using ts-node-dev to auto restart the server on changes.
+
+# Build app
+
+- `npm run build` to build the project.
+- `npm start` to start the server.
 
 ## Packages and Tools
 
-- [Node v8+](http://nodejs.org/)
+- [Node v10+](http://nodejs.org/)
 - [TypeScript](https://github.com/Microsoft/TypeScript)
 - [Express](https://npmjs.com/package/express)
-- [Nodemon](https://github.com/remy/nodemon)
+- [ts-node](https://github.com/TypeStrong/ts-node)
 - [Prettier](https://github.com/prettier/prettier)
 - [Jest](https://github.com/facebook/jest)
-- [TSlint](https://github.com/palantir/tslint)
+- [ESLint](https://github.com/eslint/eslint)
 - [Supertest](https://github.com/visionmedia/supertest)
 
 ## License
 
 ```
-Copyright 2018 Alexandros Koufatzis.
+Copyright 2020 Alexandros Koufatzis.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

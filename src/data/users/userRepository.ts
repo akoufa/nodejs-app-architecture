@@ -1,5 +1,6 @@
-import { IUserEntity, UserDao } from '../database/entities/user';
-import { IUser } from '../../domain/users/user';
+import { UserEntity, UserDao } from '../database/entities/user';
+import { User } from '../../domain/users/user';
+import { UserRepository } from '../../domain/users/userRepository';
 
 // DATA LAYER
 // UserRepository:
@@ -9,15 +10,24 @@ import { IUser } from '../../domain/users/user';
 // It is possible to fetch the entities from different sources like inmemory cache,
 // network or the db without the need to alter the consumers code.
 
-export class UserRepository {
-  async getAll(): Promise<IUser[]> {
-    const users: IUserEntity[] = await UserDao.find();
-    return users.map((userEntity: IUserEntity) => userEntity.toUser());
+export function createUserRepository(): UserRepository {
+  async function getAll(): Promise<User[]> {
+    const users: UserEntity[] = await UserDao.find();
+    return users.map((userEntity: UserEntity) => userEntity.toUser());
   }
 
-  async add(firstName: string, lastName: string, age: number): Promise<IUser> {
+  async function add(
+    firstName: string,
+    lastName: string,
+    age: number,
+  ): Promise<User> {
     let userModel = new UserDao({ firstName, lastName, age });
     userModel = await userModel.save();
     return userModel.toUser();
   }
+
+  return {
+    getAll,
+    add,
+  };
 }

@@ -1,19 +1,19 @@
 {
   "name": "node-architecture-boilerplate",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A node boilerplate project showcasing an architecture approach",
   "main": "./src/server.ts",
   "scripts": {
-    "debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"npm run watch-tsc\" \"npm run watch-node\"",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server.ts",
+    "start:dev-env": "docker-compose -f docker-compose.dev.yaml up -d",
+    "stop:dev-env": "docker-compose -f docker-compose.dev.yaml down",
     "start": "NODE_ENV=production node dist/server.js",
     "build": "tsc",
     "tsc": "tsc",
-    "watch-node": "nodemon ./dist/server.js",
-    "watch-tsc": "tsc -w",
     "prettier": "prettier --list-different './src/**/*.ts'",
     "clean": "rimraf dist",
     "test": "jest",
-    "lint": "tslint -c tslint.json -p tsconfig.json"
+    "lint": "eslint src --ext .ts"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -32,30 +32,34 @@
   "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "express": "4.17.1",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.8.9"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
-    "@types/dotenv": "^6.1.1",
-    "@types/express": "^4.17.0",
-    "@types/jest": "^24.0.15",
-    "@types/mongoose": "^5.5.9",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.9.1",
+    "@types/mongoose": "^5.5.43",
     "@types/node": "^10.11.4",
     "@types/supertest": "^2.0.8",
-    "concurrently": "^4.1.1",
-    "husky": "3.0.1",
-    "jest": "^24.8.0",
-    "lint-staged": "^9.2.0",
-    "nodemon": "^1.19.1",
-    "prettier": "^1.18.2",
-    "rimraf": "^2.6.3",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "4.2.1",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
     "supertest": "^4.0.2",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
-    "tslint-config-airbnb": "^5.11.1",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "ts-jest": "^25.0.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.5"
   }
 }

@@ -1,19 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import request from 'supertest';
-import { appFactory } from '../../http/app';
+import { appFactory } from '../app';
 import { UsersService } from '../../domain/users/usersService';
-import { UserRepository } from '../../data/users/userRepository';
-
-const mockGetAll = jest.fn();
-const mockAdd = jest.fn();
-
-jest.mock('../../data/users/userRepository.ts', () => ({
-  UserRepository: jest.fn().mockImplementation(() => {
-    return {
-      getAll: mockGetAll,
-      add: mockAdd,
-    };
-  }),
-}));
 
 const userData = [
   { name: 'Alex', age: 30 },
@@ -21,21 +9,24 @@ const userData = [
   { name: 'Pantelis', age: 40 },
 ];
 
-const userRepository = new UserRepository();
-const userService = new UsersService(userRepository);
+const mockUserRepository = {
+  getAll: jest.fn(),
+  add: jest.fn(),
+};
+
+const userService = new UsersService(mockUserRepository);
 
 const app = appFactory(userService);
 
 describe('user route test', () => {
   describe('GET /users test', () => {
     beforeEach(() => {
-      (UserRepository as any).mockClear();
-      mockGetAll.mockClear();
-      mockAdd.mockClear();
+      mockUserRepository.getAll.mockClear();
+      mockUserRepository.add.mockClear();
     });
 
     it('should return 200 an array of users', async () => {
-      mockGetAll.mockResolvedValue(userData);
+      mockUserRepository.getAll.mockResolvedValue(userData);
 
       const { body: users } = await request(app)
         .get('/users')
@@ -46,7 +37,7 @@ describe('user route test', () => {
 
     it('should return 500 when the service rejects with an error', () => {
       const dbError = new Error('Database error');
-      mockGetAll.mockRejectedValue(dbError);
+      mockUserRepository.getAll.mockRejectedValue(dbError);
       return request(app)
         .get('/users')
         .expect(500)

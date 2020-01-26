@@ -1,6 +1,6 @@
 import process from 'process';
 
-export const init = (closeFunc: () => void) => async () => {
+export const init = (closeFunc: () => any) => async () => {
   try {
     await closeFunc();
     process.exit(0);

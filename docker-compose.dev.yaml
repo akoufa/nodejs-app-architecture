@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  db:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    env_file: .env

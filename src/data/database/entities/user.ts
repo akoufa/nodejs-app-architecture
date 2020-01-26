@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
-import { IUser } from '../../../domain/users/user';
+import { User } from '../../../domain/users/user';
 
 export interface IDocumentUser extends mongoose.Document {
   firstName: string;
   lastName: string;
   age: number;
 }
-export interface IUserEntity extends IDocumentUser {
-  toUser(): IUser;
+export interface UserEntity extends IDocumentUser {
+  toUser(): User;
 }
 
 export const UserSchema = new mongoose.Schema({
@@ -16,7 +16,7 @@ export const UserSchema = new mongoose.Schema({
   age: Number,
 });
 
-UserSchema.methods.toUser = function(): IUser {
+UserSchema.methods.toUser = function toUser(): User {
   const name = `${this.firstName} ${this.lastName}`;
   return {
     name,
@@ -25,4 +25,4 @@ UserSchema.methods.toUser = function(): IUser {
   };
 };
 
-export const UserDao = mongoose.model<IUserEntity>('User', UserSchema);
+export const UserDao = mongoose.model<UserEntity>('User', UserSchema);

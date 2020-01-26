@@ -1,5 +1,5 @@
-import { IUser } from './user';
-import { IUserRepository } from './userRepository';
+import { User } from './user';
+import { UserRepository } from './userRepository';
 
 // DOMAIN LAYER
 // Has the userRepository as a dependency. The UserService does not know
@@ -8,7 +8,7 @@ import { IUserRepository } from './userRepository';
 // gets the results and usually applies some business logic on them.
 
 export class UsersService {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async getAllUsers() {
     const users = await this.userRepository.getAll();
@@ -19,7 +19,7 @@ export class UsersService {
     firstName: string,
     lastName: string,
     age: number,
-  ): Promise<IUser> {
+  ): Promise<User> {
     // TODO: catch possible errors here and rethrow a custom error you defined instead
     return this.userRepository.add(firstName, lastName, age);
   }
